@@ -7,16 +7,14 @@
 
     <link rel="stylesheet" href="style.css">
     
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer onload="initGoogleSignIn()"></script>
 </head>
 
 <body>
 
     <h1>Inicio de sesión</h1>
 
-    <button id="login">
-        Iniciar sesión con Google
-    </button>
+<div id="buttonDiv"></div>
 
     <div id="datos">
         <h2>Datos del empleado</h2>
