@@ -1,20 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // 1. Inicializamos Google con tu Client ID
-    google.accounts.id.initialize({
-        client_id: "645034059917-9s3gc6a1bsrj7aasbh0bg5d4pbqn42se.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-    });
-
-    // 2. Le ordenamos a Google que dibuje SU botón oficial en tu nuevo div
-    google.accounts.id.renderButton(
-        document.getElementById("buttonDiv"),
-        { theme: "outline", size: "large", text: "signin_with" }
-    );
-
-    // Opcional: Muestra el cartelito flotante "One Tap" si el usuario ya está logueado
-    google.accounts.id.prompt();
-
     // 3. Configuración del botón Cerrar Sesión
     const botonLogout = document.getElementById("logout");
     if (botonLogout) {
@@ -23,6 +7,25 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 });
+
+function initGoogleSignIn() {
+    if (!window.google || !window.google.accounts || !window.google.accounts.id) {
+        console.error("Google Identity Services no se cargó correctamente.");
+        return;
+    }
+
+    google.accounts.id.initialize({
+        client_id: "645034059917-9s3gc6a1bsrj7aasbh0bg5d4pbqn42se.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+    });
+
+    google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large", text: "signin_with" }
+    );
+
+    google.accounts.id.prompt();
+}
 
 // 4. Esta función se ejecuta cuando el usuario selecciona su cuenta de Google con éxito
 function handleCredentialResponse(response) {
