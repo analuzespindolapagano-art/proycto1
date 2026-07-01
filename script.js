@@ -1,49 +1,51 @@
-// 1. Esperamos a que la página se cargue por completo
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 2. Inicializamos la configuración de Google con tu Client ID
+    // 1. Inicializamos Google con tu Client ID
     google.accounts.id.initialize({
         client_id: "645034059917-9s3gc6a1bsrj7aasbh0bg5d4pbqn42se.apps.googleusercontent.com",
-        callback: handleCredentialResponse // La función que procesará los datos del usuario
+        callback: handleCredentialResponse
     });
 
-    // 3. Le asignamos la función a tu botón con ID "login"
-    const botonLogin = document.getElementById("login");
-    if (botonLogin) {
-        botonLogin.onclick = () => {
-            // Abre el prompt oficial de Google para seleccionar la cuenta
-            google.accounts.id.prompt((notification) => {
-                if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-                    // Si por alguna razón el prompt se bloquea, intentamos abrirlo de forma alternativa
-                    console.log("El prompt automático no se mostró, intentando reabrir...");
-                }
-            });
-        };
-    }
+    // 2. Le ordenamos a Google que dibuje SU botón oficial en tu nuevo div
+    google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large", text: "signin_with" }
+    );
 
-    // 4. Le asignamos la función a tu botón con ID "logout"
+    // Opcional: Muestra el cartelito flotante "One Tap" si el usuario ya está logueado
+    google.accounts.id.prompt();
+
+    // 3. Configuración del botón Cerrar Sesión
     const botonLogout = document.getElementById("logout");
     if (botonLogout) {
         botonLogout.onclick = () => {
-            // Recargamos la página para limpiar los datos de la pantalla sencillamente
             location.reload();
         };
     }
 });
 
-// 5. Esta función se ejecuta automáticamente cuando el usuario selecciona su cuenta de Google
+// 4. Esta función se ejecuta cuando el usuario selecciona su cuenta de Google con éxito
 function handleCredentialResponse(response) {
-    // Decodificamos el token JWT seguro que nos envía Google
     const perfilUsuario = decodeJwtResponse(response.credential);
     
-    // Insertamos la información exactamente en los párrafos de tu HTML
+    // Mostramos los datos en los párrafos de tu HTML
     document.getElementById("nombre").innerText = "Nombre: " + (perfilUsuario.given_name || perfilUsuario.name);
     document.getElementById("apellido").innerText = "Apellido: " + (perfilUsuario.family_name || "");
     document.getElementById("correo").innerText = "Correo: " + perfilUsuario.email;
-    document.getElementById("sueldo").innerText = "Sueldo: $0.00 (Ejemplo)"; // Dato fijo de prueba
+    document.getElementById("sueldo").innerText = "Sueldo: $0.00"; 
+
+    // ¡MAGIA!: También rellenamos los inputs de tu formulario PHP automáticamente
+    document.querySelector("input[name='nombre']").value = perfilUsuario.given_name || perfilUsuario.name;
+    document.querySelector("input[name='apellido']").value = perfilUsuario.family_name || "";
+    document.querySelector("input[name='correo']").value = perfilUsuario.email;
+    document.querySelector("input[name='sueldo']").value = 0; // Valor por defecto para el sueldo
+
+    // Ocultamos el botón de Google y mostramos el panel de datos con el botón "Guardar" de PHP
+    document.getElementById("buttonDiv").style.display = "none";
+    document.getElementById("datos").style.display = "block";
 }
 
-// 6. Función matemática interna para desencriptar los datos del Token de Google
+// 5. Decodificador del token de Google
 function decodeJwtResponse(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
