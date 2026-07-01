@@ -6,6 +6,8 @@
     <title>Inicio de sesión</title>
 
     <link rel="stylesheet" href="style.css">
+    
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -17,9 +19,7 @@
     </button>
 
     <div id="datos">
-
         <h2>Datos del empleado</h2>
-
         <p id="nombre"></p>
         <p id="apellido"></p>
         <p id="correo"></p>
@@ -28,34 +28,18 @@
         <button id="logout">
             Cerrar sesión
         </button>
-
     </div>
-
-    <form action="guardar.php" method="POST">
-
-        <input type="text" name="nombre" placeholder="Nombre" required>
-
-        <input type="text" name="apellido" placeholder="Apellido" required>
-
-        <input type="email" name="correo" placeholder="Correo" required>
-
-        <input type="number" name="sueldo" placeholder="Sueldo" required>
-
-        <button type="submit">Guardar</button>
-
-    </form>
 
     <script src="script.js"></script>
 
-</div>
-<form action="guardar.php" method="POST">
- <input type="text" name="nombre" placeholder="Nombre" required>
- <input type="text" name="apellido" placeholder="Apellido" required>
- <input type="email" name="correo" placeholder="Correo" required>
- <input type="number" name="sueldo" placeholder="Sueldo" required>
+    <form action="guardar.php" method="POST">
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <input type="text" name="apellido" placeholder="Apellido" required>
+        <input type="email" name="correo" placeholder="Correo" required>
+        <input type="number" name="sueldo" placeholder="Sueldo" required>
 
-<button type="submit">Guardar</button>
-</form>
+        <button type="submit">Guardar</button>
+    </form>
 
 </body>
 </html>
