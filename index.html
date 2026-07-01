@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inicio Sesion</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Portal de Recibos</h1>
+    <h1>Inicio Sesion</h1>
 <button id="login">
 Iniciar sesión con Google
 </button>
@@ -25,6 +25,14 @@ Cerrar sesión
 </button>
 
 </div>
-<script src="script.js"></script>
+<form action="guardar.php" method="POST">
+ <input type="text" name="nombre" placeholder="Nombre" required>
+ <input type="text" name="apellido" placeholder="Apellido" required>
+ <input type="email" name="correo" placeholder="Correo" required>
+ <input type="number" name="sueldo" placeholder="Sueldo" required>
+
+<button type="submit">Guardar</button>
+</form>
+
 </body>
 </html>
