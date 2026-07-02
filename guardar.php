@@ -10,7 +10,6 @@ $sueldo = $_POST["sueldo"];
 
 $sql = "INSERT INTO empleados(id, nombre, apellido, correo electronico, sueldo)
 VALUES( '$id','$nombre','$apellido','$correoelectronico','$sueldo')";
-
 if($conexion->query($sql)){
     echo "Datos guardados correctamente";
 }else{
