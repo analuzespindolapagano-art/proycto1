@@ -1,6 +1,7 @@
 <?php
 include("conexion.php");
 
+<<<<<<< HEAD
 if (isset($_POST['credential'])) {
     $token = $_POST['credential'];
 
@@ -10,6 +11,16 @@ if (isset($_POST['credential'])) {
     if (count($partes) === 3) {
         $payload = base64_decode(str_replace(['-', '_'], ['+', '/'], $partes[1]));
         $datosUsuario = json_decode($payload, true);
+=======
+$id = $_POST["id"];
+$nombre = $_POST["nombre"];
+$apellido = $_POST["apellido"];
+$correo = $_POST["correo"];
+$sueldo = $_POST["sueldo"];
+
+$sql = "INSERT INTO empleados(id, nombre, apellido, correo, sueldo)
+VALUES( '$id','$nombre','$apellido','$correo','$sueldo')";
+>>>>>>> f6f3d06fb4153778a1f8cd4885945deaa68d113f
 
         // 2. Extraemos los datos exactos del perfil de Google
         $nombre   = $conexion->real_escape_escape_string($datosUsuario['given_name'] ?? $datosUsuario['name']);
