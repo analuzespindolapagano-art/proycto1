@@ -7,7 +7,7 @@ $apellido = $_POST["apellido"];
 $correo = $_POST["correo"];
 $sueldo = $_POST["sueldo"];
 
-$sql = "INSERT INTO 'login'(nombre, apellido, correo, sueldo)
+$sql = "INSERT INTO login.empleados(nombre, apellido, correo, sueldo)
 VALUES('$nombre','$apellido','$correo','$sueldo')";
 
 if($conexion->query($sql)){
