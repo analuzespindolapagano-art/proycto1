@@ -5,11 +5,12 @@ include("conexion.php");
 $id = $_POST["id"];
 $nombre = $_POST["nombre"];
 $apellido = $_POST["apellido"];
-$correoelectronico = $_POST["correo electronico"];
+$correo_electronico = $_POST["correo_electronico"];
 $sueldo = $_POST["sueldo"];
 
-$sql = "INSERT INTO empleados(id, nombre, apellido, correo electronico, sueldo)
-VALUES( '$id','$nombre','$apellido','$correoelectronico','$sueldo')";
+$sql = "INSERT INTO empleados(id, nombre, apellido, correo_electronico, sueldo)
+VALUES( '$id','$nombre','$apellido','$correo_electronico','$sueldo')";
+
 if($conexion->query($sql)){
     echo "Datos guardados correctamente";
 }else{
