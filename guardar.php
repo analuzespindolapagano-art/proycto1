@@ -4,11 +4,11 @@ include("conexion.php");
 
 $nombre = $_POST["nombre"];
 $apellido = $_POST["apellido"];
-$correo = $_POST["correo"];
+$correoelectronico = $_POST["correo electronico"];
 $sueldo = $_POST["sueldo"];
 
-$sql = "INSERT INTO login.empleados(nombre, apellido, correo, sueldo)
-VALUES('$nombre','$apellido','$correo','$sueldo')";
+$sql = "INSERT INTO login.empleados(nombre, apellido, correo electronico, sueldo)
+VALUES( '$nombre','$apellido','$correoelectronico','$sueldo')";
 
 if($conexion->query($sql)){
     echo "Datos guardados correctamente";
