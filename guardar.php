@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
 
-<<<<<<< HEAD
+<<<<< << HEAD
 if (isset($_POST['credential'])) {
     $token = $_POST['credential'];
 
